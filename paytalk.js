@@ -27,7 +27,7 @@ async function initialize() {
     userAddress.innerHTML = "Your Qortal Address: " + account.address;
     //errorArea.innerHTML = "<p>ADDRESS FOUND!<br/>Response Object: " + account + "<br/>Response String: " + JSON.stringify(account) + "</p>";
   } catch (error) {
-    messageInput.value = JSON.stringify(error);
+    userAddress.innerHTML = "Your Address: " + JSON.stringify(error);
   }
   checkBalance();
 }
@@ -43,7 +43,7 @@ async function checkBalance() {
     userBalance.innerHTML = "Your " + coinSelect.value + " Balance: " + JSON.stringify(balance);
     //errorArea.innerHTML = "<p>BALANCE FOUND!<br/>Response Object: " + balance + "<br/>Response String: " + JSON.stringify(balance) + "</p>";
   } catch (error) {
-    messageInput.value = JSON.stringify(error);
+    userBalance.innerHTML = "Your Balance: " + JSON.stringify(error);
   }
 }
 
