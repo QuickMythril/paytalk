@@ -16,6 +16,8 @@ async function initialize() {
   document.getElementById("coinButton").addEventListener("click", () => sendCoins());
   document.getElementById("bothButton").addEventListener("click", () => sendBoth());
   document.getElementById("devFundButton").addEventListener("click", () => donateToDevFund());
+  addressInput.addEventListener("click", () => clearAddress());
+  messageInput.addEventListener("click", () => clearMessage());
   //coinSelect.addEventListener("change", () => checkBalance());
 
   try {
@@ -30,6 +32,14 @@ async function initialize() {
     userAddress.innerHTML = "Your Address: " + JSON.stringify(error);
   }
   checkBalance();
+}
+
+function clearAddress() {
+  addressInput.value = "";
+}
+
+function clearMessage() {
+  messageInput.value = "";
 }
 
 // Check wallet balance
