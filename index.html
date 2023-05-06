@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PayTalk</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <header>
+    <!-- Add header content if needed -->
+  </header>
+
+  <main>
+
+    <div id="infoArea">
+      <p>PayTalk is a simple Q-App to demonstrate how to<br/>send coins and/or messages to any Qortal user.</p>
+    </div>
+
+    <div id="inputArea">
+      <form>
+
+        <p><input type="reset" class="sendButton" value="Clear All"></p>
+
+        <p><label for="addressInput">Address:</label><br/>
+        <input type="text" id="addressInput" name="addressInput" placeholder="Send to address..."></p>
+
+        <p><label for="messageInput">Message:</label><br/>
+        <textarea id="messageInput" name="messageInput" placeholder="Enter a message..."></textarea></p>
+
+        <p><label for="coinSelect">Coin:</label><br/>
+        <select id="coinSelect" name="coinSelect">
+          <option value="QORT">QORT - Qortal</option>
+          <option value="QORT">BTC - Bitcoin (coming soon)</option>
+          <option value="QORT">LTC - Litecoin (coming soon)</option>
+          <option value="QORT">DOGE - Dogecoin (coming soon)</option>
+          <option value="QORT">DGB - Digibyte (coming soon)</option>
+          <option value="QORT">RVN - Ravencoin (coming soon)</option>
+          <option value="QORT">ARRR - Piratechain (coming soon)</option>
+        </select>
+
+	<div id="userAddress">Your Address: (unavailable)</div>
+	<div id="userBalance">Your Balance: (unavailable)</div>
+	
+        <p><label for="amountInput">Amount:</label><br/>
+        <input type="number" min="0" max="21000000" id="amountInput" name="amountInput" placeholder="0"></p>
+
+      </form>
+    </div>
+
+    <div id="buttonArea">
+      <p><button id="messageButton" class="sendButton">Send Message</button>
+      <button id="coinButton" class="sendButton">Send Coins</button></p>
+
+      <p><button id="bothButton" class="sendButton">Send Both</button></p>
+
+      <p><button id="devFundButton" class="sendButton">Donate to DevFund</button></p>      
+    </div>
+
+    <p>Errors:</p>
+    <div id="errorArea">
+      <!-- Script can post error messages here -->
+    </div>
+
+  </main>
+
+  <footer>
+    <!-- Add footer content if needed -->
+  </footer>
+
+  <script src="paytalk.js"></script>
+
+</body>
+
+</html>
+
