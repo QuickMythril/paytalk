@@ -4,7 +4,6 @@ let coinSelect = document.getElementById("coinSelect");
 let userAddress = document.getElementById("userAddress");
 let userBalance = document.getElementById("userBalance");
 let amountInput = document.getElementById("amountInput");
-let errorArea = document.getElementById("errorArea");
 let donationAddress = "";
 
 initialize();
@@ -26,9 +25,9 @@ async function initialize() {
     });
     // Display the user's address
     userAddress.innerHTML = "Your Qortal Address: " + account.address;
-    errorArea.innerHTML = "<p>ADDRESS FOUND!<br/>Response Object: " + account + "<br/>Response String: " + JSON.stringify(account) + "</p>";
+    //errorArea.innerHTML = "<p>ADDRESS FOUND!<br/>Response Object: " + account + "<br/>Response String: " + JSON.stringify(account) + "</p>";
   } catch (error) {
-    errorArea.innerHTML = "<p>Unable to access account.<br/>Error Object: " + error + "<br/>Error String: " + JSON.stringify(error) + "</p>";
+    messageInput.value = JSON.stringify(error);
   }
   checkBalance();
 }
@@ -42,9 +41,9 @@ async function checkBalance() {
     });
     // Display the user's balance
     userBalance.innerHTML = "Your " + coinSelect.value + " Balance: " + JSON.stringify(balance);
-    errorArea.innerHTML = "<p>BALANCE FOUND!<br/>Response Object: " + balance + "<br/>Response String: " + JSON.stringify(balance) + "</p>";
+    //errorArea.innerHTML = "<p>BALANCE FOUND!<br/>Response Object: " + balance + "<br/>Response String: " + JSON.stringify(balance) + "</p>";
   } catch (error) {
-    errorArea.innerHTML = "<p>Unable to access " + coinSelect.value + " balance.<br/>Error Object: " + error + "<br/>Error String: " + JSON.stringify(error) + "</p>";
+    messageInput.value = JSON.stringify(error);
   }
 }
 
@@ -64,9 +63,9 @@ async function sendMessage() {
       destinationAddress: addressInput.value,
       message: messageInput.value
     });
-    errorArea.innerHTML = "<p>MESSAGE SENT!<br/>Response Object: " + res + "<br/>Response String: " + JSON.stringify(res) + "</p>";
+    //errorArea.innerHTML = "<p>MESSAGE SENT!<br/>Response Object: " + res + "<br/>Response String: " + JSON.stringify(res) + "</p>";
   } catch (error) {
-    errorArea.innerHTML = "<p>Unable to send message.<br/>Error Object: " + error + "<br/>Error String: " + JSON.stringify(error) + "</p>";
+    messageInput.value = JSON.stringify(error);
   }
 }
 
@@ -88,9 +87,9 @@ async function sendCoins() {
       amount: amountInput.value
       //fee: 0.00000020 // fee per byte
     });
-    errorArea.innerHTML = "<p>COINS SENT!<br/>Response Object: " + res + "<br/>Response String: " + JSON.stringify(res) + "</p>";
+    //errorArea.innerHTML = "<p>COINS SENT!<br/>Response Object: " + res + "<br/>Response String: " + JSON.stringify(res) + "</p>";
   } catch (error) {
-    errorArea.innerHTML = "<p>Unable to send coins.<br/>Error Object: " + error + "<br/>Error String: " + JSON.stringify(error) + "</p>";
+    messageInput.value = JSON.stringify(error);
   }
 }
 
@@ -137,8 +136,8 @@ async function donateToDevFund() {
       amount: amountInput.value
       //fee: 0.00000020 // fee per byte
     });
-    errorArea.innerHTML = "<p>DONATION SENT!<br/>Response Object: " + res + "<br/>Response String: " + JSON.stringify(res) + "</p>";
+    //errorArea.innerHTML = "<p>DONATION SENT!<br/>Response Object: " + res + "<br/>Response String: " + JSON.stringify(res) + "</p>";
   } catch (error) {
-    errorArea.innerHTML = "<p>Unable to donate to DevFund.<br/>Error Object: " + error + "<br/>Error String: " + JSON.stringify(error) + "</p>";
+    messageInput.value = JSON.stringify(error);
   }
 }
