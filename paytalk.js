@@ -18,7 +18,7 @@ async function initialize() {
   document.getElementById("devFundButton").addEventListener("click", () => donateToDevFund());
   addressInput.addEventListener("click", () => clearAddress());
   messageInput.addEventListener("click", () => clearMessage());
-  //coinSelect.addEventListener("change", () => checkBalance());
+  coinSelect.addEventListener("change", () => checkBalance());
 
   try {
     // Get the account of the logged-in user

@@ -12,7 +12,7 @@
 <body>
 
   <header>
-    PayTalk v0.1.3
+    PayTalk v0.1.4
   </header>
 
   <main>
@@ -35,12 +35,12 @@
         <p><label for="coinSelect">Coin:</label><br/>
         <select id="coinSelect" name="coinSelect">
           <option value="QORT">QORT (more coming soon)</option>
-          <!-- option value="QORT">BTC - Bitcoin (coming soon)</option>
-          <option value="QORT">LTC - Litecoin (coming soon)</option>
-          <option value="QORT">DOGE - Dogecoin (coming soon)</option>
-          <option value="QORT">DGB - Digibyte (coming soon)</option>
-          <option value="QORT">RVN - Ravencoin (coming soon)</option>
-          <option value="QORT">ARRR - Piratechain (coming soon)</option -->
+          <option value="BTC">BTC - Bitcoin (coming soon)</option>
+          <option value="LTC">LTC - Litecoin (coming soon)</option>
+          <option value="DOGE">DOGE - Dogecoin (coming soon)</option>
+          <option value="DGB">DGB - Digibyte (coming soon)</option>
+          <option value="RVN">RVN - Ravencoin (coming soon)</option>
+          <option value="ARRR">ARRR - Piratechain (coming soon)</option>
         </select>
 
 	<div id="userAddress">Your Address: (unavailable)</div>
