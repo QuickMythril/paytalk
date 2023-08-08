@@ -3,6 +3,7 @@ let messageInput = document.getElementById("messageInput");
 let coinSelect = document.getElementById("coinSelect");
 let serviceSelect = document.getElementById("serviceSelect");
 let identifierInput = document.getElementById("identifierInput");
+let fileInput = document.getElementById("fileInput");
 let userAddress = document.getElementById("userAddress");
 let userBalance = document.getElementById("userBalance");
 let userName = document.getElementById("userName");
@@ -10,7 +11,7 @@ let amountInput = document.getElementById("amountInput");
 let donationAddress = "";
 let activeAddress = "";
 let activeName = "";
-let activeFile = document.getElementById("fileInput").files[0];
+let activeFile = "";
 
 
 initialize();
@@ -25,6 +26,7 @@ async function initialize() {
   document.getElementById("devFundButton").addEventListener("click", () => donateToDevFund());
   document.getElementById("publishButton").addEventListener("click", () => publish());
   coinSelect.addEventListener("change", () => checkBalance());
+  fileInput.addEventListener("change", () => updateFile());
 
   try {
     // Get the account of the logged-in user
@@ -41,6 +43,10 @@ async function initialize() {
     userName.innerHTML = "Your Name: " + JSON.stringify(error);
   }
   checkBalance();
+}
+
+function updateFile() {
+  let activeFile = this.files[0];
 }
 
 function clearAddress() {
@@ -88,11 +94,11 @@ async function checkName(address) {
 // Send a message
 async function sendMessage() {
   if (addressInput.value == "") {
-    addressInput.value = "Enter an Address"
+    addressInput.value = "Enter an Address";
     return;
   }
   if (messageInput.value == "") {
-    messageInput.value = "Enter a Message"
+    messageInput.value = "Enter a Message";
     return;
   }
   try {
@@ -139,21 +145,21 @@ async function sendBoth() {
 
 // Publish content to QDN
 async function publish() {
-  if (activeName != "") {
-    try {
-      let res = await qortalRequest({
-        action: "PUBLISH_QDN_RESOURCE",
-        name: activeName,
-        service: serviceSelect.value,
-        identifier: identifierInput.value,
-        file: activeFile
-      })
-      messageInput.value = "Your content is available at:<br/><br/>qortal://" + res.service + "/" + res.name + "/" + res.identifier;
-    } catch (error) {
-      messageInput.value = JSON.stringify(error);
-    }
-  } else {
-    messageInput.value = "A Registered Name is required to publish to QDN."
+  if (activeName == "") {
+    messageInput.value = "A Registered Name is required to publish to QDN.";
+    return;
+  }
+  try {
+    let res = await qortalRequest({
+      action: "PUBLISH_QDN_RESOURCE",
+      name: activeName,
+      service: serviceSelect.value,
+      identifier: identifierInput.value,
+      file: activeFile
+    });
+    messageInput.value = "Your content is available at:<br/><br/>qortal://" + res.service + "/" + res.name + "/" + res.identifier;
+  } catch (error) {
+    messageInput.value = JSON.stringify(error);
   }
 }
 

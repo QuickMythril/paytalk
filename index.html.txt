@@ -12,7 +12,7 @@
 <body>
 
   <header>
-    PayTalk v0.2.1
+    PayTalk v0.2.1e
   </header>
 
   <main>
@@ -69,7 +69,7 @@
       <form>
 
         <p><label for="serviceSelect">Service:</label><br/>
-        <select id="coinSelect" name="coinSelect">
+        <select id="serviceSelect" name="serviceSelect">
           <option value="AUDIO">AUDIO</option>
           <option value="IMAGE">IMAGE</option>
           <option value="VIDEO">VIDEO</option>
