@@ -138,16 +138,31 @@ async function donateToDevFund() {
       donationAddress = "zs17flf0wuj6yslpd0y9h6pet3ttdwz6zztrdy3akh6lht02xvyjnnrf53qc74tn8h6065jghhvdx2";
       break;
   }
-  try {
-    let res = await qortalRequest({
-      action: "SEND_COIN",
-      coin: coinSelect.value,
-      destinationAddress: donationAddress,
-      amount: amountInput.value
-      //fee: 0.00000020 // fee per byte
-    });
-    //errorArea.innerHTML = "<p>DONATION SENT!<br/>Response Object: " + res + "<br/>Response String: " + JSON.stringify(res) + "</p>";
-  } catch (error) {
-    messageInput.value = JSON.stringify(error);
+  if (coinSelect.value === "RVN") {
+    try {
+      let res = await qortalRequest({
+        action: "SEND_COIN",
+        coin: coinSelect.value,
+        destinationAddress: donationAddress,
+        amount: amountInput.value,
+        fee: 0.00001000 // 0.00001000 fee per byte
+      });
+      //errorArea.innerHTML = "<p>DONATION SENT!<br/>Response Object: " + res + "<br/>Response String: " + JSON.stringify(res) + "</p>";
+    } catch (error) {
+      messageInput.value = JSON.stringify(error);
+    }
+  } else {
+    try {
+      let res = await qortalRequest({
+        action: "SEND_COIN",
+        coin: coinSelect.value,
+        destinationAddress: donationAddress,
+        amount: amountInput.value
+        //fee: 20 // 0.00000020 fee per byte
+      });
+      //errorArea.innerHTML = "<p>DONATION SENT!<br/>Response Object: " + res + "<br/>Response String: " + JSON.stringify(res) + "</p>";
+    } catch (error) {
+      messageInput.value = JSON.stringify(error);
+    }
   }
 }

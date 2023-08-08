@@ -12,7 +12,7 @@
 <body>
 
   <header>
-    PayTalk v0.1.4
+    PayTalk v0.1.4b
   </header>
 
   <main>
