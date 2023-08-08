@@ -12,13 +12,16 @@
 <body>
 
   <header>
-    PayTalk v0.2.0
+    PayTalk v0.2.1
   </header>
 
   <main>
 
     <div id="infoArea">
-      <p>PayTalk is a simple functional Q-App to demonstrate<br/>how to send coins and/or messages to any Qortal user.</p>
+      <p>PayTalk is a simple functional Q-App to demonstrate
+        <br/>how to send coins and/or messages to any Qortal user,
+        <br/>and how to publish to QDN, using "qortalRequest".
+      </p>
     </div>
 
     <div id="inputArea">
@@ -60,6 +63,28 @@
       <p><button id="bothButton" class="sendButton">Send Both</button></p>
 
       <p><button id="devFundButton" class="sendButton">Donate to DevFund</button></p>      
+    </div>
+
+    <div id="publishArea">
+      <form>
+
+        <p><label for="serviceSelect">Service:</label><br/>
+        <select id="coinSelect" name="coinSelect">
+          <option value="AUDIO">AUDIO</option>
+          <option value="IMAGE">IMAGE</option>
+          <option value="VIDEO">VIDEO</option>
+        </select>
+	
+        <p><label for="identifierInput">Identifier:</label><br/>
+        <input type="text" id="identifierInput" name="identifierInput" placeholder="(optional)"></p>
+
+        <p><label for="fileInput">File:</label><br/>
+        <input type="file" id="fileInput" name="fileInput"></p>
+
+        <p>Note: You can overwrite existing content!</p>
+        <p><button id="publishButton" class="sendButton">Publish to QDN</button></p>
+  
+      </form>
     </div>
 
   </main>

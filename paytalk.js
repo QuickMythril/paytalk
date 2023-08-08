@@ -1,6 +1,8 @@
 let addressInput = document.getElementById("addressInput");
 let messageInput = document.getElementById("messageInput");
 let coinSelect = document.getElementById("coinSelect");
+let serviceSelect = document.getElementById("serviceSelect");
+let identifierInput = document.getElementById("identifierInput");
 let userAddress = document.getElementById("userAddress");
 let userBalance = document.getElementById("userBalance");
 let userName = document.getElementById("userName");
@@ -8,6 +10,7 @@ let amountInput = document.getElementById("amountInput");
 let donationAddress = "";
 let activeAddress = "";
 let activeName = "";
+let activeFile = document.getElementById("fileInput").files[0];
 
 
 initialize();
@@ -20,8 +23,7 @@ async function initialize() {
   document.getElementById("coinButton").addEventListener("click", () => sendCoins());
   document.getElementById("bothButton").addEventListener("click", () => sendBoth());
   document.getElementById("devFundButton").addEventListener("click", () => donateToDevFund());
-  addressInput.addEventListener("click", () => clearAddress());
-  messageInput.addEventListener("click", () => clearMessage());
+  document.getElementById("publishButton").addEventListener("click", () => publish());
   coinSelect.addEventListener("change", () => checkBalance());
 
   try {
@@ -133,6 +135,26 @@ async function sendCoins() {
 async function sendBoth() {
   sendMessage();
   sendCoins();
+}
+
+// Publish content to QDN
+async function publish() {
+  if (activeName != "") {
+    try {
+      let res = await qortalRequest({
+        action: "PUBLISH_QDN_RESOURCE",
+        name: activeName,
+        service: serviceSelect.value,
+        identifier: identifierInput.value,
+        file: activeFile
+      })
+      messageInput.value = "Your content is available at:<br/><br/>qortal://" + res.service + "/" + res.name + "/" + res.identifier;
+    } catch (error) {
+      messageInput.value = JSON.stringify(error);
+    }
+  } else {
+    messageInput.value = "A Registered Name is required to publish to QDN."
+  }
 }
 
 // Donate to the DevFund
