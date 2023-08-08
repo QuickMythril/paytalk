@@ -3,8 +3,12 @@ let messageInput = document.getElementById("messageInput");
 let coinSelect = document.getElementById("coinSelect");
 let userAddress = document.getElementById("userAddress");
 let userBalance = document.getElementById("userBalance");
+let userName = document.getElementById("userName");
 let amountInput = document.getElementById("amountInput");
 let donationAddress = "";
+let activeAddress = "";
+let activeName = "";
+
 
 initialize();
 
@@ -25,11 +29,14 @@ async function initialize() {
     let account = await qortalRequest({
         action: "GET_USER_ACCOUNT"
     });
+    activeAddress = account.address;
     // Display the user's address
-    userAddress.innerHTML = "Your Qortal Address: " + account.address;
+    userAddress.innerHTML = "Your Qortal Address: " + activeAddress;
+    checkName(activeAddress);
     //errorArea.innerHTML = "<p>ADDRESS FOUND!<br/>Response Object: " + account + "<br/>Response String: " + JSON.stringify(account) + "</p>";
   } catch (error) {
     userAddress.innerHTML = "Your Address: " + JSON.stringify(error);
+    userName.innerHTML = "Your Name: " + JSON.stringify(error);
   }
   checkBalance();
 }
@@ -54,6 +61,25 @@ async function checkBalance() {
     //errorArea.innerHTML = "<p>BALANCE FOUND!<br/>Response Object: " + balance + "<br/>Response String: " + JSON.stringify(balance) + "</p>";
   } catch (error) {
     userBalance.innerHTML = "Your Balance: " + JSON.stringify(error);
+  }
+}
+
+// Check account Name
+async function checkName(address) {
+  try {
+    let nameInfo = await qortalRequest({
+      action: "GET_ACCOUNT_NAMES",
+      address: address
+    });
+    // Display the user's name if they have one
+    if (nameInfo.length > 0) {
+      activeName = nameInfo[0].name;
+      userName.innerHTML = "Your Registered Name: " + activeName;
+    } else {
+      userName.innerHTML = "No Registered Name";
+    }
+  } catch (error) {
+    userName.innerHTML = "Your Name: " + JSON.stringify(error);
   }
 }
 

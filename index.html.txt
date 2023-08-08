@@ -12,7 +12,7 @@
 <body>
 
   <header>
-    PayTalk v0.1.4b
+    PayTalk v0.2.0
   </header>
 
   <main>
@@ -45,6 +45,7 @@
 
 	<div id="userAddress">Your Address: (unavailable)</div>
 	<div id="userBalance">Your Balance: (unavailable)</div>
+	<div id="userName">Your Name: (unavailable)</div>
 	
         <p><label for="amountInput">Amount:</label><br/>
         <input type="number" min="0" max="21000000" id="amountInput" name="amountInput" placeholder="0"></p>
